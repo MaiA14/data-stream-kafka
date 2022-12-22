@@ -1,0 +1,23 @@
+FROM node:14.18.3 as base
+
+RUN mkdir -p /usr/src/jeeng
+RUN mkdir -p /usr/src/jeeng/middleware
+
+WORKDIR /usr/src/jeeng/middleware
+
+COPY ./package.json /usr/src/jeeng/middleware
+
+RUN npm install && npm cache clean --force
+
+WORKDIR /usr/src/jeeng/middleware
+
+COPY ./ /usr/src/jeeng/middleware/
+
+RUN npm install
+
+EXPOSE 6000 
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]
+
+

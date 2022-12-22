@@ -1,0 +1,21 @@
+FROM node:14.18.3 as base
+
+RUN mkdir -p /usr/src/jeeng
+RUN mkdir -p /usr/src/jeeng/server
+
+WORKDIR /usr/src/jeeng/server
+
+COPY ./package.json /usr/src/jeeng/server
+
+RUN npm install && npm cache clean --force
+
+WORKDIR /usr/src/jeeng/server
+
+COPY ./ /usr/src/jeeng/server/
+
+RUN npm install
+
+EXPOSE 4000
+
+CMD ["npm", "run", "start"]
+
