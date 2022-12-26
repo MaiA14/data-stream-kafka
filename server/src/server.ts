@@ -1,3 +1,4 @@
+import { Server } from "http";
 import App from "./app";
 import config from "./config";
 import ServerOnlineController from "./controllers/serverOnline";
@@ -10,7 +11,7 @@ const controllers =
 };
 
 
-const app = new App(controllers, config.server.port);
+const app = new App(controllers, parseInt(config.server.port));
 app.listen(async () => {});
 
 

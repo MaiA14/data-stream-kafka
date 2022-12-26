@@ -25,7 +25,7 @@ services:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
       - KAFKA_CFG_DELETE_TOPIC_ENABLE=true
-      - KAFKA_CFG_CREATE_TOPICS="assignments:1:1"
+      - KAFKA_CFG_CREATE_TOPICS="${TOPIC}:1:1"
       - KAFKA_CFG_OFFSETS_TOPIC_NUM_PARTITIONS=2
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
@@ -41,6 +41,9 @@ services:
       - app-tier
     build:
       context: ./server/
+    environment:
+      - TOPIC=${TOPIC}
+      - MAIN_SERVER_PORT=${MAIN_SERVER_PORT}
     volumes:
       - ./server:/usr/src/jeeng/server
   middleware:
@@ -51,6 +54,9 @@ services:
      - "3000:3000"
    networks:
       - app-tier
+   environment:
+      - TOPIC=${TOPIC}
+      - SOCKET_PORT=${SOCKET_PORT}
    build:
       context: ./middleware/
    volumes:
@@ -64,6 +70,10 @@ services:
      - "8080:80"
    networks:
      - app-tier
+   environment:
+     - TOPIC=${TOPIC}
+     - MAIN_SERVER_PORT=${MAIN_SERVER_PORT}
+     - SOCKET_PORT=${SOCKET_PORT}
    build:
       context: ./client/
    volumes:

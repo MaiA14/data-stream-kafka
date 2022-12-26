@@ -17,5 +17,11 @@ RUN npm install
 
 EXPOSE 4000
 
+
 CMD ["npm", "run", "start"]
+
+# FROM base as test
+# RUN npm ci
+# COPY . .
+# CMD [ "npm", "run", "test" ]
 

@@ -35,7 +35,7 @@ export class SocketService {
     return Subject.create(observer, observable);
   }
 
-  disconnect() {
+  disconnect(): void {
     this.socket.disconnect();
   }
 }

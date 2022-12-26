@@ -60,7 +60,6 @@ export class KafkaService {
   public async subscribe(topic: string, onMessageCallback?: Function) {
     try {
       if (this.connection) {
-        // this.consumer = this.connection.consumer({ groupId: 'jeeng' })
         await this.consumer.connect()
         await this.consumer.subscribe({ topic: topic, fromBeginning: true });
         await this.consumer.run({
@@ -73,7 +72,7 @@ export class KafkaService {
             isStale,
           }) => {
             for (let message of batch.messages) {
-              // if (!isRunning() || isStale()) break // shut down the consumer without losing any messages.
+              if (!isRunning() || isStale()) break // shut down the consumer without losing any messages.
               const parsedMessage = message.value.toString();
               console.log('message ', parsedMessage);
               if (onMessageCallback) {

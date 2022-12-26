@@ -1,13 +1,13 @@
 <router-outlet></router-outlet>
 <div>
-    <mat-form-field [ngStyle]="{'margin-top': '20px','font-size': '12px', 'font-weight': 'bold', 'margin-left': '5px'}">
+    <mat-form-field class="searxh-field">
         <mat-label>Search or Filter by text</mat-label>
         <input matInput class="example-full-width" (keyup)="applyFilter($event)" placeholder="Serach / Filter" #input>
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData(dataSource)">
-        <ng-container matColumnDef="sendAt">
+        <ng-container matColumnDef="sendAt" style="white-space:nowrap;">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
-            <td mat-cell *matCellDef="let assignment"> {{assignment.sendAt}} </td>
+            <td mat-cell *matCellDef="let assignment"> {{assignment.sendAt}} </td> 
         </ng-container>
         <ng-container matColumnDef="isActive">
             <th mat-header-cell *matHeaderCellDef> isActive </th>
@@ -23,7 +23,7 @@
         </ng-container>
         <ng-container matColumnDef="phone">
             <th mat-header-cell *matHeaderCellDef> Phone </th>
-            <td mat-cell *matCellDef="let assignment"> {{assignment.phone}} </td>
+            <td mat-cell *matCellDef="let assignment" style="white-space:nowrap;"> {{assignment.phone}} </td>
         </ng-container>
         <ng-container matColumnDef="address">
             <th mat-header-cell *matHeaderCellDef> Address </th>
@@ -43,8 +43,7 @@
         </ng-container>
         <ng-container matColumnDef="content">
             <th mat-header-cell *matHeaderCellDef> Content </th>
-            <td mat-cell [ngStyle]="{'display': '-webkit-box', '-webkit-line-clamp': '6', 'overflow': 'hidden', 
-            '-webkit-box-orient': 'vertical'}" *matCellDef="let assignment"> {{assignment.content}} </td>
+            <td mat-cell class="content-field" *matCellDef="let assignment"> {{assignment.content}} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

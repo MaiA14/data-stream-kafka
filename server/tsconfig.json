@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "skipLibCheck":true,
       "experimentalDecorators": true,
       "lib": [
         "es6"
@@ -12,5 +13,8 @@
       "target": "es6",
       "allowJs": true
     },
+    "exclude": [
+      "test",
+  ],
     "compileOnSave": true,
   }

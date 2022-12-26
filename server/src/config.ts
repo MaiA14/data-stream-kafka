@@ -1,4 +1,4 @@
-const SERVER_PORT = 4000;
+const SERVER_PORT = process.env.MAIN_SERVER_PORT;
 const SERVER_IP = '127.0.0.1'; // localhost
 const ORIGIN = '*' // middleware
 

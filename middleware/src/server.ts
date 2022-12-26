@@ -16,7 +16,7 @@ app.listen(async (expressApp) => {
     try {
         socket = new SocketService();
         socket.connect(expressApp);
-        await new MessageBrokerService().subscribe('assignments', (msg) => {
+        await new MessageBrokerService().subscribe(process.env.TOPIC, (msg) => {
            socket.sendMsg(msg);
         });
 

@@ -39,7 +39,7 @@ export default class ServerOnlineController {
 
     private async readNotifications(req: TypedRequestBody<{ filePath: string, fileName: string, brokerTopic: string }>, res: express.Response): Promise<void> {
         console.log('readNotifications ');
-        if (!req.body.filePath || !req.body.fileName || !req.body.brokerTopic) {
+        if (!req.body.filePath || !req.body.fileName) {
             res.status(404).send({ message: 'could not process read notifications due to missing paramters' });
             return;
         }
@@ -54,11 +54,11 @@ export default class ServerOnlineController {
                 .on('end', () => { // converts bytes to string
                     const data = JSON.parse(buffer);
                     data.forEach(async element => { // publish each event to message broker 
-                        await new MessageBrokerService().publish(req.body.brokerTopic, { value: JSON.stringify(element) });
+                        await new MessageBrokerService().publish(process.env.TOPIC, { value: JSON.stringify(element) });
                     });
 
-                    res.status(200).send({ message: 'notified' });
                 });
+            res.status(200).send({ message: 'notified' });
         } catch (readStreamError) {
             console.error('readStreamError ', readStreamError.stack);
         }

@@ -44,8 +44,7 @@ export class AppComponent implements OnInit {
     this.data = [];
     this.stream = {
       filePath: 'gs://public-assignments',
-      fileName: 'generated.json',
-      brokerTopic: 'assignments'
+      fileName: 'generated.json'
     };
   }
 
@@ -59,8 +58,8 @@ export class AppComponent implements OnInit {
 
     try {
       this.http.post(REQUESTS_URLS.READ_NOTIFICATIONS, this.stream)
-    } catch (error) {
-      console.log(error);
+    } catch (readNotificationsError) {
+      console.log('error getting data', readNotificationsError);
     }
   }
 
