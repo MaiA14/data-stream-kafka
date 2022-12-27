@@ -1,4 +1,4 @@
-# Kafka & NodeJS
+# Streams
 
 ## Prerequisites
 The following technologies should be installed globally
