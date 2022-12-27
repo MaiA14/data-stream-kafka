@@ -1,4 +1,4 @@
-# Streams
+# Data streaming with Kafka
 
 ## Prerequisites
 The following technologies should be installed globally
